@@ -8,8 +8,23 @@ pipeline {
         stage ('checkout') {
             steps {
                 script {
-                    git branch 'main';
+                    git url:'https://github.com/praveenpeddapotula/project-1.git' , branch: 'main'
                 }
+            }
+        }
+        stage ('build') {
+            steps {
+                sh 'mvn clean build'
+            }
+        }
+        stage ('test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+        stage ('package') {
+            steps {
+                sh 'mvn clean package'
             }
         }
     }
